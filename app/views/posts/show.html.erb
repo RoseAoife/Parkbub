@@ -40,14 +40,43 @@
     <label>End Time: </label>
     <input id="time3" type="time" onChange="getPrice(<%= @post.cost %>)"/>
     <input id="time4" type="date" onChange="getPrice(<%= @post.cost %>)"/>
-  
-    <p><strong>Total Price: </strong><u id="totalPrice">Select a Time</u></p>
     
-    <%= link_to '<button type="button">Book</button'.html_safe, posts_book_path %>
+    <%= form_tag(new_charge_path, :method => "get") do %>
+      <p><strong>Total Price: </strong><u id="totalPrice">Select a Time</u></p>
+      
+      <div class="input-group">  
+        <%= button_tag "Book" %>   
+      </div>
+    <% end %>
   </div>
 </div>
 
 <script>
+function defaultValues() {
+    var d = new Date();
+    var m = d.getMonth() + 1
+    if (m < 10) {
+        m = '0' + m;
+    }
+    today = d.getFullYear() + '-' + m + '-' + d.getDate();
+    var h = d.getHours();
+    var mi = d.getMinutes();
+    if (h < 10) {
+        h = '0' + h;
+    }
+    if (mi < 10) {
+        mi = '0' + mi;
+    }
+    now = h + ":" + mi;
+    later = (h + 1) + ":" + mi;
+    
+    document.getElementById("time2").value = today;
+    document.getElementById("time4").value = today;
+    document.getElementById("time1").value = now;
+    document.getElementById("time3").value = later;
+    console.log(later);
+}
+    
 function getPrice(price) {  
     var t1 = new Date(document.getElementById("time2").value + ' ' + document.getElementById("time1").value);
         
@@ -59,7 +88,7 @@ function getPrice(price) {
     var hours   = Math.floor((millis / (1000*60*60)) % 24);
     
     totalPrice = ((price * hours) + (price * (minutes / 60))).toFixed(2);
-    if (totalPrice == NaN || totalPrice < 0) {
+    if (totalPrice == 'NaN' || totalPrice < 0) {
         totalPrice = "Invalid Times";
     }
     else {
@@ -68,4 +97,11 @@ function getPrice(price) {
         
     document.getElementById("totalPrice").innerHTML = totalPrice;
 }
+    
+
+
+document.addEventListener("turbolinks:load", function() {
+  defaultValues();
+  getPrice(<%= @post.cost %>);
+})
 </script>
