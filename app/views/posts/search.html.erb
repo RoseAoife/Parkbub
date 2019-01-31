@@ -1,0 +1,27 @@
+<h1>Search</h1>
+
+<p>Searching for: <%= @search_term %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Posted by</th>
+      <th>Title</th>
+      <th>Address</th>
+      <th>Price/hr</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <% @results.each do |result| %>  
+  <tbody>
+    <tr>
+      <td><%= result.posted_by %></td>
+      <td><%= result.title %></td>
+      <td><%= result.address %></td>
+      <td>€<%= result.cost %></td>
+      <td><%= link_to 'Details', result %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>

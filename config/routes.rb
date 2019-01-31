@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  root 'home#index'
   get 'home/index'
-  root "home#index"
-  resources :charges
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'posts/search' => 'posts#search'
+  get 'posts/book' => 'posts#book'
+  resources :posts
+  devise_for :users
 end

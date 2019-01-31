@@ -1,0 +1,71 @@
+<div id="container">
+  <div id="first" style="width: 35%">
+    <h1>Details</h1>
+    <p>
+      <strong>Posted by:</strong>
+      <%= @post.posted_by %>
+    </p>
+    <p>
+      <strong>Name:</strong>
+      <%= @post.title %>
+    </p>
+
+    <p>
+      <strong>Address:</strong>
+      <%= @post.address %>
+    </p>
+
+    <p>
+      <strong>Price/hr:</strong>
+      €<%= @post.cost %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @post.body %>
+    </p>
+
+    <% if current_user.email == @post.email %>
+      <%= link_to 'Edit', edit_post_path(@post) %> |
+    <% end %>
+    <%= link_to 'Back', posts_path %>
+  </div>
+    
+  <div id="second" style="float: left">
+    <h1>Book</h1>
+    <label>Start Time: </label>
+    <input id="time1" type="time" onChange="getPrice(<%= @post.cost %>)"/>
+    <input id="time2" type="date" onChange="getPrice(<%= @post.cost %>)"/>
+    <br><br>
+    <label>End Time: </label>
+    <input id="time3" type="time" onChange="getPrice(<%= @post.cost %>)"/>
+    <input id="time4" type="date" onChange="getPrice(<%= @post.cost %>)"/>
+  
+    <p><strong>Total Price: </strong><u id="totalPrice">Select a Time</u></p>
+    
+    <%= link_to '<button type="button">Book</button'.html_safe, posts_book_path %>
+  </div>
+</div>
+
+<script>
+function getPrice(price) {  
+    var t1 = new Date(document.getElementById("time2").value + ' ' + document.getElementById("time1").value);
+        
+    var t2 = new Date(document.getElementById("time4").value + ' ' + document.getElementById("time3").value);
+    
+    var millis = t2 - t1
+     
+    var minutes = Math.floor((millis / (1000*60)) % 60);
+    var hours   = Math.floor((millis / (1000*60*60)) % 24);
+    
+    totalPrice = ((price * hours) + (price * (minutes / 60))).toFixed(2);
+    if (totalPrice == NaN || totalPrice < 0) {
+        totalPrice = "Invalid Times";
+    }
+    else {
+        totalPrice = '€' + totalPrice;
+    }
+        
+    document.getElementById("totalPrice").innerHTML = totalPrice;
+}
+</script>

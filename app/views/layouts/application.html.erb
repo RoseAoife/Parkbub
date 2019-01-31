@@ -10,6 +10,44 @@
   </head>
 
   <body>
+    <h1>Parkbub</h1>
+      <div id="container">
+        <div id="first">
+          <p class="navbar-text pull-right">
+          <% if user_signed_in? %>
+            Logged in as <strong><%= current_user.username %></strong> - 
+            <%= link_to 'Home', home_index_path, :class => 'navbar-link' %> | 
+            <%= link_to 'Posts', posts_path, :class => 'navbar-link' %> | 
+            <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          <% else %>
+            <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+            <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+          <% end %>
+          </p>
+        </div>
+        <div id="second">
+          <% if user_signed_in? %>
+          <%= form_tag(posts_search_path, :method => "get", class: 'navbar-form navbar-left') do %>  
+          <div class="input-group">  
+            <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
+            <div class="input-group-btn" style="float: right">  
+            <%= button_tag "Search", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
+          </div>
+          <% end %>
+        </div>  
+        <% end %>
+        </div>
+        <div id="clear"></div>
+      </div>
+    <hr>
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <hr>
     <%= yield %>
   </body>
 </html>

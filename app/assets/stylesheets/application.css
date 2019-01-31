@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+#container {
+    width: auto;
+    margin: auto;
+}
+#first {
+    width: auto;
+    float: left;
+    height: auto;
+}
+#second {
+    width: auto;
+    float: right;
+    height: auto;
+}
+#clear {
+    clear: both;
+}
