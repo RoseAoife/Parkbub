@@ -4,6 +4,14 @@ class ChargesController < ApplicationController
     end
     
     def new
+        @post = params[:post]
+        begin
+            if Float(params[:hiddenPrice])
+                @price = params[:hiddenPrice]
+            end
+        rescue
+            redirect_back(fallback_location: home_index_path)
+        end
     end
 
     def create        

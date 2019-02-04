@@ -28,7 +28,7 @@
     <% if current_user.email == @post.email %>
       <%= link_to 'Edit', edit_post_path(@post) %> |
     <% end %>
-    <%= link_to 'Back', posts_path %>
+    <%= link_to 'Back', :back %>
   </div>
     
   <div id="second" style="float: left">
@@ -43,6 +43,8 @@
     
     <%= form_tag(new_charge_path, :method => "get") do %>
       <p><strong>Total Price: </strong><u id="totalPrice">Select a Time</u></p>
+      <%= hidden_field_tag(:hiddenPrice) %>
+      <%= hidden_field_tag('post', @post) %>
       
       <div class="input-group">  
         <%= button_tag "Book" %>   
@@ -54,11 +56,15 @@
 <script>
 function defaultValues() {
     var d = new Date();
+    var day = d.getDate();
     var m = d.getMonth() + 1
     if (m < 10) {
         m = '0' + m;
     }
-    today = d.getFullYear() + '-' + m + '-' + d.getDate();
+    if (day < 10) {
+        day = '0' + day;
+    }
+    today = d.getFullYear() + '-' + m + '-' + day;
     var h = d.getHours();
     var mi = d.getMinutes();
     if (h < 10) {
@@ -68,13 +74,15 @@ function defaultValues() {
         mi = '0' + mi;
     }
     now = h + ":" + mi;
-    later = (h + 1) + ":" + mi;
+    later = (parseInt(h) + 1) + ":" + mi;
+    if (later.length < 5) {
+        later = '0' + later;
+    }
     
     document.getElementById("time2").value = today;
     document.getElementById("time4").value = today;
     document.getElementById("time1").value = now;
     document.getElementById("time3").value = later;
-    console.log(later);
 }
     
 function getPrice(price) {  
@@ -96,6 +104,7 @@ function getPrice(price) {
     }
         
     document.getElementById("totalPrice").innerHTML = totalPrice;
+    document.getElementById("hiddenPrice").value = totalPrice.substring(1);
 }
     
 
