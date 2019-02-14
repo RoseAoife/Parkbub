@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root 'home#index'
   get 'home/index'
-  get 'posts/search' => 'posts#search'
-  get 'posts/book' => 'posts#book'
+  get 'parking_spaces/search' => 'parking_spaces#search'
+  get 'parking_spaces/book' => 'parking_spaces#book'
   
-  resources :posts
+  resources :parking_spaces
   resources :charges
   devise_for :users
 end

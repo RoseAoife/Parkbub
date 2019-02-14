@@ -26,7 +26,7 @@
     </p>
 
     <% if current_user.email == @post.email %>
-      <%= link_to 'Edit', edit_post_path(@post) %> |
+      <%= link_to 'Edit', edit_parking_space_path(@post) %> |
     <% end %>
     <%= link_to 'Back', :back %>
   </div>
@@ -41,10 +41,10 @@
     <input id="time3" type="time" onChange="getPrice(<%= @post.cost %>)"/>
     <input id="time4" type="date" onChange="getPrice(<%= @post.cost %>)"/>
     
-    <%= form_tag(new_charge_path, :method => "get") do %>
+    <%= form_tag(new_parking_space_path, :method => "get") do %>
       <p><strong>Total Price: </strong><u id="totalPrice">Select a Time</u></p>
       <%= hidden_field_tag(:hiddenPrice) %>
-      <%= hidden_field_tag('post', @post) %>
+      <%= hidden_field_tag('address', @post.address) %>
       
       <div class="input-group">  
         <%= button_tag "Book" %>   

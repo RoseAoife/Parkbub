@@ -20,7 +20,7 @@
         <td>€<%= post.cost %></td>
         <td><%= link_to 'Details', post %></td>
         <% if current_user.email == post.email %>
-          <td><%= link_to 'Edit', edit_post_path(post) %></td>
+          <td><%= link_to 'Edit', edit_parking_space_path(post) %></td>
         <% end %>
       </tr>
     <% end %>
@@ -29,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post', new_parking_space_path %>

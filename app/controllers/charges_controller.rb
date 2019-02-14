@@ -4,7 +4,7 @@ class ChargesController < ApplicationController
     end
     
     def new
-        @post = params[:post]
+        @address = params[:address]
         begin
             if Float(params[:hiddenPrice])
                 @price = params[:hiddenPrice]

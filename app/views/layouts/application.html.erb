@@ -17,7 +17,7 @@
           <% if user_signed_in? %>
             Logged in as <strong><%= current_user.username %></strong> - 
             <%= link_to 'Home', home_index_path, :class => 'navbar-link' %> | 
-            <%= link_to 'Posts', posts_path, :class => 'navbar-link' %> | 
+            <%= link_to 'Posts', parking_spaces_path, :class => 'navbar-link' %> | 
             <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
             <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
           <% else %>
@@ -28,7 +28,7 @@
         </div>
         <div id="second">
           <% if user_signed_in? %>
-          <%= form_tag(posts_search_path, :method => "get", class: 'navbar-form navbar-left') do %>  
+          <%= form_tag(parking_spaces_search_path, :method => "get", class: 'navbar-form navbar-left') do %>  
           <div class="input-group">  
             <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
             <div class="input-group-btn" style="float: right">  

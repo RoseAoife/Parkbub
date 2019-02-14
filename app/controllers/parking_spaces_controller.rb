@@ -1,21 +1,21 @@
-class PostsController < ApplicationController
+class ParkingSpacesController < ApplicationController
   before_action :authenticated_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = ParkingSpace.all
   end
     
   def search
     if params[:search].blank?  
       @search_term = 'N/A'
-      @results = Post.all  
+      @results = ParkingSpace.all  
     else  
       @search_term = params[:search]
       @parameter = params[:search].downcase  
-      @results = Post.all.where("lower(title) LIKE :search OR lower(address) LIKE :search OR lower(body) LIKE :search OR lower(posted_by) LIKE :search", search: "%#{@parameter}%")
+      @results = ParkingSpace.all.where("lower(title) LIKE :search OR lower(address) LIKE :search OR lower(body) LIKE :search OR lower(posted_by) LIKE :search", search: "%#{@parameter}%")
     end
   end
     
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @parking_space = current_user.parking_space.new
   end
 
   # GET /posts/1/edit
@@ -39,17 +39,15 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-    @post.posted_by = current_user.username
-    @post.email = current_user.email
+    @parking_space = current_user.parking_space.new(post_params)
 
     respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+      if @parking_space.save
+        format.html { redirect_to @parking_space, notice: 'Post was successfully listed.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.json { render json: @parking_space.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -81,11 +79,11 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = ParkingSpace.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :address, :cost)
+      params.require(:parking_space).permit(:title, :body, :address, :cost)
     end
 end
