@@ -10,37 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_14_093704) do
+ActiveRecord::Schema.define(version: 2019_02_21_111851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.float "price"
+    t.bigint "parking_space_id"
     t.bigint "user_id"
-    t.bigint "post_id"
-    t.datetime "time"
-    t.bigint "parking_spaces_id"
-    t.bigint "users_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parking_spaces_id"], name: "index_bookings_on_parking_spaces_id"
-    t.index ["post_id"], name: "index_bookings_on_post_id"
+    t.index ["parking_space_id"], name: "index_bookings_on_parking_space_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
-    t.index ["users_id"], name: "index_bookings_on_users_id"
   end
 
   create_table "parking_spaces", force: :cascade do |t|
-    t.string "title", null: false
-    t.float "cost", null: false
-    t.string "address", null: false
-    t.text "body"
-    t.string "posted_by", null: false
-    t.bigint "users_id"
+    t.string "name"
+    t.float "cost"
+    t.string "address"
+    t.string "description"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email"
-    t.integer "user_id"
-    t.index ["users_id"], name: "index_parking_spaces_on_users_id"
+    t.index ["user_id"], name: "index_parking_spaces_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,8 +47,6 @@ ActiveRecord::Schema.define(version: 2019_02_14_093704) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username", default: "", null: false
-    t.bigint "bookings_id"
-    t.index ["bookings_id"], name: "index_users_on_bookings_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
