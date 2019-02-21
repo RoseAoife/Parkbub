@@ -25,12 +25,17 @@
       <%= @post.body %>
     </p>
 
+    <%# Link to a new booking to bring user to the bookings controller
+    We can send the parking space id with it. This way the bookings controller
+    will know what parking space we're talking about  %>
+    <%# <%= link_to 'Create Booking', new_parking_space_booking_path(@post) %> %>
+
     <% if current_user.email == @post.email %>
-      <%= link_to 'Edit', edit_parking_space_path(@post) %> |
+      <%= link_to 'Edit', edit_parking_space_path(id: @post.id) %> |
     <% end %>
     <%= link_to 'Back', :back %>
   </div>
-    
+
   <div id="second" style="float: left">
     <h1>Book</h1>
     <label>Start Time: </label>
@@ -40,14 +45,14 @@
     <label>End Time: </label>
     <input id="time3" type="time" onChange="getPrice(<%= @post.cost %>)"/>
     <input id="time4" type="date" onChange="getPrice(<%= @post.cost %>)"/>
-    
+
     <%= form_tag(new_parking_space_path, :method => "get") do %>
       <p><strong>Total Price: </strong><u id="totalPrice">Select a Time</u></p>
       <%= hidden_field_tag(:hiddenPrice) %>
       <%= hidden_field_tag('address', @post.address) %>
-      
-      <div class="input-group">  
-        <%= button_tag "Book" %>   
+
+      <div class="input-group">
+        <%= button_tag "Book" %>
       </div>
     <% end %>
   </div>
@@ -78,23 +83,23 @@ function defaultValues() {
     if (later.length < 5) {
         later = '0' + later;
     }
-    
+
     document.getElementById("time2").value = today;
     document.getElementById("time4").value = today;
     document.getElementById("time1").value = now;
     document.getElementById("time3").value = later;
 }
-    
-function getPrice(price) {  
+
+function getPrice(price) {
     var t1 = new Date(document.getElementById("time2").value + ' ' + document.getElementById("time1").value);
-        
+
     var t2 = new Date(document.getElementById("time4").value + ' ' + document.getElementById("time3").value);
-    
+
     var millis = t2 - t1
-     
+
     var minutes = Math.floor((millis / (1000*60)) % 60);
     var hours   = Math.floor((millis / (1000*60*60)) % 24);
-    
+
     totalPrice = ((price * hours) + (price * (minutes / 60))).toFixed(2);
     if (totalPrice == 'NaN' || totalPrice < 0) {
         totalPrice = "Invalid Times";
@@ -102,11 +107,11 @@ function getPrice(price) {
     else {
         totalPrice = '€' + totalPrice;
     }
-        
+
     document.getElementById("totalPrice").innerHTML = totalPrice;
     document.getElementById("hiddenPrice").value = totalPrice.substring(1);
 }
-    
+
 
 
 document.addEventListener("turbolinks:load", function() {
