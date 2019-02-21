@@ -26,7 +26,7 @@ class ParkingSpacesController < ApplicationController
 
   # GET /posts/new
   def new
-    @parking_space = current_user.parking_space.new
+    @parking_space = ParkingSpace.new
   end
 
   # GET /posts/1/edit
@@ -39,7 +39,9 @@ class ParkingSpacesController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @parking_space = current_user.parking_space.new(post_params)
+    @parking_space = ParkingSpace.new(post_params.merge(user_id: current_user.id, users_id: current_user.id, email: current_user.email))
+    puts current_user.attributes
+    puts @parking_space.attributes
 
     respond_to do |format|
       if @parking_space.save

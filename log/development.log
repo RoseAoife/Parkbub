@@ -20116,3 +20116,837 @@ Completed 200 OK in 239ms (Views: 77.9ms | ActiveRecord: 71.3ms)
   [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
   [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
   [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+Started GET "/" for 127.0.0.1 at 2019-02-21 09:12:52 +0000
+  [1m[35m (78.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/tynanpmatthews/.rbenv/versions/2.6.0/lib/ruby/gems/2.6.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by HomeController#index as HTML
+Redirected to http://localhost:3000/users/sign_in
+Filter chain halted as :authenticated_user! rendered or redirected
+Completed 302 Found in 145ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2019-02-21 09:12:58 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (14.1ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (1218.3ms)
+Completed 200 OK in 3102ms (Views: 2873.7ms | ActiveRecord: 115.6ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2019-02-21 09:13:07 +0000
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"n9qGJxO+BwTzPdV0AETEldowj+sHzgIg6EtjGoH8J5/TnkWDwkQQnsPcnLtjYQ9vbbHSTJCY5NE5kerpQIA3mA==", "user"=>{"email"=>"tynan.matthews@parkpnp.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (673.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "tynan.matthews@parkpnp.com"], ["LIMIT", 1]]
+  ↳ /home/tynanpmatthews/.rbenv/versions/2.6.0/lib/ruby/gems/2.6.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 1902ms (ActiveRecord: 677.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-21 09:13:09 +0000
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 355ms (Views: 347.6ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:13:13 +0000
+Processing by ParkingSpacesController#index as HTML
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/index.html.erb within layouts/application
+  [1m[36mParkingSpace Load (20.1ms)[0m  [1m[34mSELECT "parking_spaces".* FROM "parking_spaces"[0m
+  ↳ app/views/parking_spaces/index.html.erb:15
+  Rendered parking_spaces/index.html.erb within layouts/application (33.2ms)
+Completed 200 OK in 746ms (Views: 103.3ms | ActiveRecord: 30.7ms)
+
+
+Started GET "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 09:13:16 +0000
+Processing by ParkingSpacesController#new as HTML
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (134.9ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (194.5ms)
+Completed 200 OK in 1221ms (Views: 389.0ms | ActiveRecord: 5.0ms)
+
+
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:13:30 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wods2sZa0jnBaPqOao2zDuc88JQ2KOQSXYHeNnxi1owsj8rm3m1SsWRFppCw/bwlZz1lwycWE4L89hyl4Qhr2g==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test test test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:45
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:45
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (30.0ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (41.4ms)
+Completed 200 OK in 854ms (Views: 241.8ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:20:26 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2BM5fO1EPZdKTrYoXCou6nMpFd6c/8uJSn5wOfzisWvATxc9SPCo3zxl3zp2erTWDZuMvM3K/RhBOinNP42LVA==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test test test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (11.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (46.1ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (90.0ms)
+Completed 200 OK in 854ms (Views: 528.0ms | ActiveRecord: 52.2ms)
+
+
+Started GET "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:21:27 +0000
+Processing by ParkingSpacesController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/index.html.erb within layouts/application
+  [1m[36mParkingSpace Load (2.0ms)[0m  [1m[34mSELECT "parking_spaces".* FROM "parking_spaces"[0m
+  ↳ app/views/parking_spaces/index.html.erb:15
+  Rendered parking_spaces/index.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 250ms (Views: 105.0ms | ActiveRecord: 26.8ms)
+
+
+Started GET "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:21:46 +0000
+Processing by ParkingSpacesController#index as HTML
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/index.html.erb within layouts/application
+  [1m[36mParkingSpace Load (2.0ms)[0m  [1m[34mSELECT "parking_spaces".* FROM "parking_spaces"[0m
+  ↳ app/views/parking_spaces/index.html.erb:15
+  Rendered parking_spaces/index.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 280ms (Views: 126.7ms | ActiveRecord: 50.9ms)
+
+
+Started GET "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 09:21:48 +0000
+Processing by ParkingSpacesController#new as HTML
+  [1m[36mUser Load (7.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (7.9ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 354ms (Views: 121.8ms | ActiveRecord: 35.1ms)
+
+
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:22:02 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"plXszVSXHR/4LNpisNcJUj7OlnxTPsHWwko0y0nR0bhIXUrxTKCdl10BhnxqpwZ5vs8DK0IANkZjPfZY1Lts7g==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  [1m[35m (5.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (17.4ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (22.9ms)
+Completed 200 OK in 204ms (Views: 171.8ms | ActiveRecord: 7.2ms)
+
+
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:23:24 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"C0wv/G/ap8qWvV/NsHdHNgrsVkX195D2xHi1ptJcH0QTEAG9ym4yguCWNt+aJ90KdF7PJ6TCpmfPPOxSETMlew==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (3.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:45
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:45
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (30.1ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (33.1ms)
+Completed 200 OK in 478ms (Views: 215.1ms | ActiveRecord: 8.9ms)
+
+
+Started GET "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:25:42 +0000
+Processing by ParkingSpacesController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/index.html.erb within layouts/application
+  [1m[36mParkingSpace Load (0.5ms)[0m  [1m[34mSELECT "parking_spaces".* FROM "parking_spaces"[0m
+  ↳ app/views/parking_spaces/index.html.erb:15
+  Rendered parking_spaces/index.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 480ms (Views: 289.9ms | ActiveRecord: 12.2ms)
+
+
+Started GET "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 09:25:44 +0000
+Processing by ParkingSpacesController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (10.6ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (13.4ms)
+Completed 200 OK in 212ms (Views: 117.2ms | ActiveRecord: 6.3ms)
+
+
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:25:53 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lLKtw/CzeTzR59BP+wYzJ763vf+Rm+iKxCYHqJ6S4Gt6ugv/6IT5tHTKjFEhdjwMPrYoqIClHxplUcU7A/hdPQ==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test test test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:45
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:45
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (15.4ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (24.0ms)
+Completed 200 OK in 186ms (Views: 152.5ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:26:11 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"WjUYkuvCu7H2p4et0NKMhdkEN4rk3kknW0F2HBiTrg5CaTbTTnYu+YCM7r/6gha5p7au6LXrf7ZQBS/o2/yUMQ==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test test test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:46
+  [1m[35m (0.9ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:46
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (27.1ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (32.4ms)
+Completed 200 OK in 532ms (Views: 278.7ms | ActiveRecord: 39.6ms)
+
+
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:26:19 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nm0AODnTn83SJDKVH1h4Wz5xoSxY2WLDCr2pvucoJxSGMS55nGcKhaQPW4c1COJnQMM4TgnsVFIB+fBKJEcdKw==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test test test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:46
+  [1m[35m (1.0ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:46
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (29.6ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (43.6ms)
+Completed 200 OK in 426ms (Views: 149.4ms | ActiveRecord: 44.6ms)
+
+
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:26:28 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"boxO8Q5pVhqSMxJKJV9BEgqxWpbiNYZOZtDMlh+lxRF20GCwq93DUuQYe1gPD9sudAPD9LMAsN9tlJVi3Mr/Lg==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test test test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 500 Internal Server Error in 411ms (ActiveRecord: 40.8ms)
+
+
+  
+NoMethodError (undefined method `attr' for #<User:0x00007fde29d4e310>):
+  
+app/controllers/parking_spaces_controller.rb:43:in `create'
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:27:01 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"boxO8Q5pVhqSMxJKJV9BEgqxWpbiNYZOZtDMlh+lxRF20GCwq93DUuQYe1gPD9sudAPD9LMAsN9tlJVi3Mr/Lg==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test test test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:46
+  [1m[35m (1.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:46
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (15.7ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (27.8ms)
+Completed 200 OK in 332ms (Views: 79.6ms | ActiveRecord: 47.0ms)
+
+
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:27:34 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+ST1CUixh+o+/fM0SNic+jQfWl6SxLt+lWF+EYFXxuHheNtI7QUSokjWmiZiiAbGSq3DPMPxje+eJSflQjj83g==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test test test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  [1m[35m (4.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (10.4ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 391ms (Views: 87.1ms | ActiveRecord: 5.1ms)
+
+
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:27:50 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"q12PGr5EnF6elF4iucjzQWFrHxSnhFqIY187LEQJ4RazAaFbG/AJFui/NzCTmGl9H9mGdvaxbBloG2LYh2bbKQ==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test test test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+Completed 500 Internal Server Error in 299ms (ActiveRecord: 46.9ms)
+
+
+  
+NameError (uninitialized constant ParkingSpace::Users):
+  
+app/controllers/parking_spaces_controller.rb:47:in `block in create'
+app/controllers/parking_spaces_controller.rb:46:in `create'
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:28:43 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"q12PGr5EnF6elF4iucjzQWFrHxSnhFqIY187LEQJ4RazAaFbG/AJFui/NzCTmGl9H9mGdvaxbBloG2LYh2bbKQ==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test test test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (5.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+Completed 500 Internal Server Error in 252ms (ActiveRecord: 37.9ms)
+
+
+  
+NameError (uninitialized constant ParkingSpace::Users):
+  
+app/controllers/parking_spaces_controller.rb:47:in `block in create'
+app/controllers/parking_spaces_controller.rb:46:in `create'
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:32:05 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"q12PGr5EnF6elF4iucjzQWFrHxSnhFqIY187LEQJ4RazAaFbG/AJFui/NzCTmGl9H9mGdvaxbBloG2LYh2bbKQ==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test test test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  [1m[35m (6.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+Completed 500 Internal Server Error in 90ms (ActiveRecord: 7.5ms)
+
+
+  
+NameError (uninitialized constant ParkingSpace::Users):
+  
+app/controllers/parking_spaces_controller.rb:47:in `block in create'
+app/controllers/parking_spaces_controller.rb:46:in `create'
+Started GET "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:32:11 +0000
+Processing by ParkingSpacesController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/index.html.erb within layouts/application
+  [1m[36mParkingSpace Load (1.0ms)[0m  [1m[34mSELECT "parking_spaces".* FROM "parking_spaces"[0m
+  ↳ app/views/parking_spaces/index.html.erb:15
+  Rendered parking_spaces/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 141ms (Views: 136.4ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 09:32:13 +0000
+Processing by ParkingSpacesController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (40.1ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (48.5ms)
+Completed 200 OK in 294ms (Views: 257.8ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:32:22 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wOGsaMWprD6jqMaKkMuXJbN3bSf13/y5mnudezn2368u6QpU3Z4stgaFmpRKu5gOM3b4cOThCyk7DF/opJxi+Q==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test test test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+Completed 500 Internal Server Error in 55ms (ActiveRecord: 4.0ms)
+
+
+  
+NameError (uninitialized constant ParkingSpace::Users):
+  
+app/controllers/parking_spaces_controller.rb:47:in `block in create'
+app/controllers/parking_spaces_controller.rb:46:in `create'
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:35:33 +0000
+  [1m[35m (21.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/tynanpmatthews/.rbenv/versions/2.6.0/lib/ruby/gems/2.6.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wOGsaMWprD6jqMaKkMuXJbN3bSf13/y5mnudezn2368u6QpU3Z4stgaFmpRKu5gOM3b4cOThCyk7DF/opJxi+Q==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test test test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+Completed 500 Internal Server Error in 660ms (ActiveRecord: 35.1ms)
+
+
+  
+NameError (uninitialized constant ParkingSpace::Users):
+  
+app/controllers/parking_spaces_controller.rb:47:in `block in create'
+app/controllers/parking_spaces_controller.rb:46:in `create'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mParkingSpace Load (0.4ms)[0m  [1m[34mSELECT  "parking_spaces".* FROM "parking_spaces" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (16.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7207048699416805680)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (24.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (2.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(7207048699416805680)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started GET "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:42:39 +0000
+  [1m[35m (4.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/tynanpmatthews/.rbenv/versions/2.6.0/lib/ruby/gems/2.6.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by ParkingSpacesController#index as HTML
+  [1m[36mUser Load (4.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/index.html.erb within layouts/application
+  [1m[36mParkingSpace Load (1.0ms)[0m  [1m[34mSELECT "parking_spaces".* FROM "parking_spaces"[0m
+  ↳ app/views/parking_spaces/index.html.erb:15
+  Rendered parking_spaces/index.html.erb within layouts/application (23.6ms)
+Completed 200 OK in 2168ms (Views: 1941.2ms | ActiveRecord: 24.0ms)
+
+
+Started GET "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 09:42:44 +0000
+Processing by ParkingSpacesController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (236.4ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (244.7ms)
+Completed 500 Internal Server Error in 356ms (ActiveRecord: 10.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `persisted?' for #<Class:0x0000557094402158>):
+    32:   </div>
+    33: 
+    34:   <div class="actions">
+    35:     <%= form.submit %>
+    36:   </div>
+    37: <% end %>
+  
+app/views/parking_spaces/_form.html.erb:35:in `block in _app_views_parking_spaces__form_html_erb__718964671306624257_70161213316500'
+app/views/parking_spaces/_form.html.erb:1:in `_app_views_parking_spaces__form_html_erb__718964671306624257_70161213316500'
+app/views/parking_spaces/new.html.erb:3:in `_app_views_parking_spaces_new_html_erb___1559696036004868000_70161213123080'
+Started GET "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 09:42:59 +0000
+Processing by ParkingSpacesController#new as HTML
+  [1m[36mUser Load (7.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (4.3ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 115ms (Views: 81.0ms | ActiveRecord: 7.3ms)
+
+
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:43:28 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ndvqEZVzfNji9SKdhju75a2gnsB84+9YlD9QX1KMNuOFh8RQMMfpkJTeS4+sayHZ0xIHoi3W2cmfewmrkeMM3A==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  [1m[35m (1.0ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+Completed 500 Internal Server Error in 65ms (ActiveRecord: 1.7ms)
+
+
+  
+NameError (uninitialized constant ParkingSpace::Users):
+  
+app/controllers/parking_spaces_controller.rb:47:in `block in create'
+app/controllers/parking_spaces_controller.rb:46:in `create'
+Started PUT "/__web_console/repl_sessions/04e6ae392f28a318167ae558cac4a9b1" for 127.0.0.1 at 2019-02-21 09:44:03 +0000
+Started PUT "/__web_console/repl_sessions/04e6ae392f28a318167ae558cac4a9b1" for 127.0.0.1 at 2019-02-21 09:44:09 +0000
+Started PUT "/__web_console/repl_sessions/04e6ae392f28a318167ae558cac4a9b1" for 127.0.0.1 at 2019-02-21 09:44:10 +0000
+Started PUT "/__web_console/repl_sessions/04e6ae392f28a318167ae558cac4a9b1" for 127.0.0.1 at 2019-02-21 09:44:13 +0000
+Started GET "/parking_spaces" for 127.0.0.1 at 2019-02-21 09:56:40 +0000
+Processing by ParkingSpacesController#index as HTML
+  [1m[36mUser Load (6.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/index.html.erb within layouts/application
+  [1m[36mParkingSpace Load (1.5ms)[0m  [1m[34mSELECT "parking_spaces".* FROM "parking_spaces"[0m
+  ↳ app/views/parking_spaces/index.html.erb:15
+  Rendered parking_spaces/index.html.erb within layouts/application (20.7ms)
+Completed 200 OK in 887ms (Views: 570.0ms | ActiveRecord: 59.6ms)
+
+
+Started GET "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 09:56:46 +0000
+Processing by ParkingSpacesController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (45.8ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (48.2ms)
+Completed 200 OK in 368ms (Views: 163.6ms | ActiveRecord: 10.7ms)
+
+
+Started POST "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 09:56:55 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/parking_spaces/new"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 09:57:19 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/parking_spaces/new"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 09:57:23 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/parking_spaces/new"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 09:57:39 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/parking_spaces/new"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 09:57:46 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/parking_spaces/new"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 10:02:33 +0000
+  [1m[35m (20.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/tynanpmatthews/.rbenv/versions/2.6.0/lib/ruby/gems/2.6.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  
+ActionController::RoutingError (No route matches [POST] "/parking_spaces/new"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 10:02:58 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/parking_spaces/new"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 10:03:08 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/parking_spaces/new"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 10:03:54 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/parking_spaces/new"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 10:04:20 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/parking_spaces/new"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/parking_spaces" for 127.0.0.1 at 2019-02-21 10:06:14 +0000
+Processing by ParkingSpacesController#index as HTML
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/index.html.erb within layouts/application
+  [1m[36mParkingSpace Load (1.5ms)[0m  [1m[34mSELECT "parking_spaces".* FROM "parking_spaces"[0m
+  ↳ app/views/parking_spaces/index.html.erb:15
+  Rendered parking_spaces/index.html.erb within layouts/application (41.8ms)
+Completed 200 OK in 5268ms (Views: 4832.9ms | ActiveRecord: 29.2ms)
+
+
+Started GET "/parking_spaces/new" for 127.0.0.1 at 2019-02-21 10:06:21 +0000
+Processing by ParkingSpacesController#new as HTML
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering parking_spaces/new.html.erb within layouts/application
+  Rendered parking_spaces/_form.html.erb (175.6ms)
+  Rendered parking_spaces/new.html.erb within layouts/application (179.0ms)
+Completed 200 OK in 394ms (Views: 318.3ms | ActiveRecord: 5.4ms)
+
+
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 10:06:23 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"D183p15H7pvfQCYh3LMB5CMEVBecTDS9mJUB+ojJ+JXhV5GbRnBuE3ptej8Gww7PowXBQI1ywy054sNpFaNFww==", "parking_space"=>{"title"=>"", "address"=>"", "cost"=>"", "body"=>""}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (2.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+Completed 500 Internal Server Error in 168ms (ActiveRecord: 5.1ms)
+
+
+  
+NameError (uninitialized constant ParkingSpace::Users):
+  
+app/controllers/parking_spaces_controller.rb:47:in `block in create'
+app/controllers/parking_spaces_controller.rb:46:in `create'
+Started POST "/parking_spaces" for 127.0.0.1 at 2019-02-21 10:06:35 +0000
+Processing by ParkingSpacesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"D183p15H7pvfQCYh3LMB5CMEVBecTDS9mJUB+ojJ+JXhV5GbRnBuE3ptej8Gww7PowXBQI1ywy054sNpFaNFww==", "parking_space"=>{"title"=>"test", "address"=>"test st.", "cost"=>"1", "body"=>"test"}, "commit"=>"Create Parking space"}
+  [1m[36mUser Load (5.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+  [1m[35m (2.8ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/parking_spaces_controller.rb:47
+Completed 500 Internal Server Error in 59ms (ActiveRecord: 8.5ms)
+
+
+  
+NameError (uninitialized constant ParkingSpace::Users):
+  
+app/controllers/parking_spaces_controller.rb:47:in `block in create'
+app/controllers/parking_spaces_controller.rb:46:in `create'
