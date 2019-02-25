@@ -1,7 +1,7 @@
-<h1>Posts</h1>
+<h1>Parking Spaces</h1>
 
-<table>
-  <thead>
+<table style="table-layout: fixed; width: 100%;">
+  <thead align="left">
     <tr>
       <th>Posted by</th>
       <th>Title</th>
@@ -12,15 +12,15 @@
   </thead>
 
   <tbody>
-    <% @posts.each do |post| %>
+    <% @parking_spaces.each do |parking_space| %>
       <tr>
-        <td><%= post.posted_by %></td>
-        <td><%= post.title %></td>
-        <td><%= post.address %></td>
-        <td>€<%= post.cost %></td>
-        <td><%= link_to 'Details', post %></td>
-        <% if current_user.email == post.email %>
-          <td><%= link_to 'Edit', edit_parking_space_path(post) %></td>
+        <td><%= User.find(parking_space.user_id).username %></td>
+        <td><%= parking_space.name %></td>
+        <td><%= parking_space.address %></td>
+        <td>€<%= parking_space.cost %></td>
+        <td><%= link_to 'Details', parking_space %></td>
+        <% if current_user.id == parking_space.user_id %>
+          <td><%= link_to 'Edit', edit_parking_space_path(parking_space) %></td>
         <% end %>
       </tr>
     <% end %>
@@ -29,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Post', new_parking_space_path %>
+<%= link_to 'New Parking Space', new_parking_space_path %>

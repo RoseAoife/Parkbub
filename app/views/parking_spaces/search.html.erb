@@ -2,8 +2,8 @@
 
 <p>Searching for: <%= @search_term %></p>
 
-<table>
-  <thead>
+<table style="table-layout: fixed; width: 100%;">
+  <thead align="left">
     <tr>
       <th>Posted by</th>
       <th>Title</th>
@@ -16,11 +16,14 @@
   <% @results.each do |result| %>  
   <tbody>
     <tr>
-      <td><%= result.posted_by %></td>
-      <td><%= result.title %></td>
+      <td><%= User.find(result.user_id).username %></td>
+      <td><%= result.name %></td>
       <td><%= result.address %></td>
       <td>€<%= result.cost %></td>
       <td><%= link_to 'Details', result %></td>
+      <% if current_user.id == result.user_id %>
+          <td><%= link_to 'Edit', edit_parking_space_path(result) %></td>
+      <% end %>
     </tr>
   </tbody>
   <% end %>

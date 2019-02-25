@@ -2,120 +2,39 @@
   <div id="first" style="width: 35%">
     <h1>Details</h1>
     <p>
-      <strong>Posted by:</strong>
-      <%= @post.posted_by %>
-    </p>
-    <p>
       <strong>Name:</strong>
-      <%= @post.title %>
+      <%= @parking_space.name %>
     </p>
 
     <p>
       <strong>Address:</strong>
-      <%= @post.address %>
+      <%= @parking_space.address %>
     </p>
 
     <p>
       <strong>Price/hr:</strong>
-      €<%= @post.cost %>
+      €<%= @parking_space.cost %>
     </p>
 
     <p>
       <strong>Description:</strong>
-      <%= @post.body %>
+      <%= @parking_space.description %>
     </p>
 
     <%# Link to a new booking to bring user to the bookings controller
     We can send the parking space id with it. This way the bookings controller
     will know what parking space we're talking about  %>
-    <%# <%= link_to 'Create Booking', new_parking_space_booking_path(@post) %> %>
+    <%# <%= link_to 'Create Booking', new_parking_space_booking_path(@post) %>
 
-    <% if current_user.email == @post.email %>
-      <%= link_to 'Edit', edit_parking_space_path(id: @post.id) %> |
+    <% if current_user.id == @parking_space.user_id %>
+      <%= link_to 'Edit', edit_parking_space_path(id: @parking_space.id) %> |
     <% end %>
-    <%= link_to 'Back', :back %>
+    <%= link_to 'Back', parking_spaces_path %>
   </div>
-
+    
   <div id="second" style="float: left">
-    <h1>Book</h1>
-    <label>Start Time: </label>
-    <input id="time1" type="time" onChange="getPrice(<%= @post.cost %>)"/>
-    <input id="time2" type="date" onChange="getPrice(<%= @post.cost %>)"/>
-    <br><br>
-    <label>End Time: </label>
-    <input id="time3" type="time" onChange="getPrice(<%= @post.cost %>)"/>
-    <input id="time4" type="date" onChange="getPrice(<%= @post.cost %>)"/>
-
-    <%= form_tag(new_parking_space_path, :method => "get") do %>
-      <p><strong>Total Price: </strong><u id="totalPrice">Select a Time</u></p>
-      <%= hidden_field_tag(:hiddenPrice) %>
-      <%= hidden_field_tag('address', @post.address) %>
-
-      <div class="input-group">
-        <%= button_tag "Book" %>
-      </div>
-    <% end %>
+      <h1>Make Booking</h1>
+      <%= link_to '<button type="button">Book</button>'.html_safe, new_parking_space_booking_path(@parking_space.id) %>
   </div>
+  
 </div>
-
-<script>
-function defaultValues() {
-    var d = new Date();
-    var day = d.getDate();
-    var m = d.getMonth() + 1
-    if (m < 10) {
-        m = '0' + m;
-    }
-    if (day < 10) {
-        day = '0' + day;
-    }
-    today = d.getFullYear() + '-' + m + '-' + day;
-    var h = d.getHours();
-    var mi = d.getMinutes();
-    if (h < 10) {
-        h = '0' + h;
-    }
-    if (mi < 10) {
-        mi = '0' + mi;
-    }
-    now = h + ":" + mi;
-    later = (parseInt(h) + 1) + ":" + mi;
-    if (later.length < 5) {
-        later = '0' + later;
-    }
-
-    document.getElementById("time2").value = today;
-    document.getElementById("time4").value = today;
-    document.getElementById("time1").value = now;
-    document.getElementById("time3").value = later;
-}
-
-function getPrice(price) {
-    var t1 = new Date(document.getElementById("time2").value + ' ' + document.getElementById("time1").value);
-
-    var t2 = new Date(document.getElementById("time4").value + ' ' + document.getElementById("time3").value);
-
-    var millis = t2 - t1
-
-    var minutes = Math.floor((millis / (1000*60)) % 60);
-    var hours   = Math.floor((millis / (1000*60*60)) % 24);
-
-    totalPrice = ((price * hours) + (price * (minutes / 60))).toFixed(2);
-    if (totalPrice == 'NaN' || totalPrice < 0) {
-        totalPrice = "Invalid Times";
-    }
-    else {
-        totalPrice = '€' + totalPrice;
-    }
-
-    document.getElementById("totalPrice").innerHTML = totalPrice;
-    document.getElementById("hiddenPrice").value = totalPrice.substring(1);
-}
-
-
-
-document.addEventListener("turbolinks:load", function() {
-  defaultValues();
-  getPrice(<%= @post.cost %>);
-})
-</script>

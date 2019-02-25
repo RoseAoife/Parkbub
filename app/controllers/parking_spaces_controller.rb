@@ -5,7 +5,7 @@ class ParkingSpacesController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = ParkingSpace.all
+    @parking_spaces = ParkingSpace.all
   end
     
   def search
@@ -15,38 +15,38 @@ class ParkingSpacesController < ApplicationController
     else  
       @search_term = params[:search]
       @parameter = params[:search].downcase  
-      @results = ParkingSpace.all.where("lower(title) LIKE :search OR lower(address) LIKE :search OR lower(body) LIKE :search OR lower(posted_by) LIKE :search", search: "%#{@parameter}%")
+      @results = ParkingSpace.all.where("lower(name) LIKE :search OR lower(address) LIKE :search OR lower(description) LIKE :search", search: "%#{@parameter}%")
     end
+  end
+    
+  def bookings
+    @bookings = Booking.all
   end
     
   # GET /posts/1
   # GET /posts/1.json
   def show
+      @parking_space = ParkingSpace.find(params[:id])
   end
 
   # GET /posts/new
   def new
-    @parking_space = ParkingSpace.new
+    @parking_space = current_user.parking_space.new
   end
 
   # GET /posts/1/edit
   def edit
   end
-    
-  def book
-  end
 
   # POST /posts
   # POST /posts.json
   def create
-    @parking_space = ParkingSpace.new(post_params.merge(user_id: current_user.id, users_id: current_user.id, email: current_user.email))
-    puts current_user.attributes
-    puts @parking_space.attributes
+    @parking_space = current_user.parking_space.new(post_params)
 
     respond_to do |format|
       if @parking_space.save
-        format.html { redirect_to @parking_space, notice: 'Post was successfully listed.' }
-        format.json { render :show, status: :created, location: @post }
+        format.html { redirect_to @parking_space, notice: 'Parking space was successfully listed.' }
+        format.json { render :show, status: :created, location: @parking_space }
       else
         format.html { render :new }
         format.json { render json: @parking_space.errors, status: :unprocessable_entity }
@@ -59,7 +59,7 @@ class ParkingSpacesController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to @post, notice: 'Parking space was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
@@ -73,7 +73,7 @@ class ParkingSpacesController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to posts_url, notice: 'Parking space was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -86,6 +86,6 @@ class ParkingSpacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:parking_space).permit(:title, :body, :address, :cost)
+      params.require(:parking_space).permit(:name, :description, :address, :cost)
     end
 end

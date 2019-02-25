@@ -11,6 +11,9 @@
     </label>
     <br>
   </article>
+  <%= hidden_field_tag(:hiddenPrice) %>
+  <%= hidden_field_tag(:hiddenPrice2) %>
+  <%= hidden_field_tag(:booking, value = @booking) %>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
@@ -21,3 +24,14 @@
   <br><br>
   <%= link_to 'Cancel', :back %>
 <% end %>
+
+<script>
+function defaultValues() {
+    document.getElementById("hiddenPrice").value = parseFloat(<%= @price %>) * 100;
+    document.getElementById("hiddenPrice2").value = <%= @price %>;
+}
+    
+document.addEventListener("turbolinks:load", function() {
+  defaultValues();
+})
+</script>
