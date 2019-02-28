@@ -20,10 +20,8 @@
       <%= @parking_space.description %>
     </p>
 
-    <%# Link to a new booking to bring user to the bookings controller
-    We can send the parking space id with it. This way the bookings controller
-    will know what parking space we're talking about  %>
-    <%# <%= link_to 'Create Booking', new_parking_space_booking_path(@post) %>
+
+    <%# <%= form_for[@parking_space, @booking], parking_space_booking_path(@booking), method: :post do |f| %>
 
     <%= link_to 'Cancel', parking_space_path(@parking_space.id) %>
   </div>

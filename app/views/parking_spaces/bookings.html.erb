@@ -1,3 +1,5 @@
+<!-- TODO move this code over to bookings index -->
+
 <h1>Bookings</h1>
 
 <table style="table-layout: fixed; width: 100%;">
@@ -10,7 +12,7 @@
     </tr>
   </thead>
 
-  <% @bookings.each do |result| %>  
+  <% @bookings.each do |result| %>
   <tbody>
     <tr>
       <% if current_user.id == result.user_id %>

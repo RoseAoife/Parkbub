@@ -1,8 +1,11 @@
 class BookingsController < ApplicationController
 
   before_action :set_parking_space
-  # We'll need to authenticate the user for this controller too! (must be logged in)
+  # TODO  We'll need to authenticate the user for this controller too! (must be logged in)
+
   def index
+    # TODO list the current parking space's bookings here
+    # @bookings = @parking_space.bookings
   end
 
   def show
@@ -20,9 +23,14 @@ class BookingsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    # stuff that makes the booking here
+    # TODO move code that creates the booking here (similar to parking spaces controller)
+    @booking = Booking.new(:price => @price, :parking_space_id => @parking_space_id, :user_id => current_user.id, :start_time => '123', :end_time => '312')
+    @booking = @parking_spaces.bookings.new(booking_params)
 
-    # after saving redirect to somewhere. Example of how to link to a route with nested resources:
+    @booking.save
+
+    redirect_to new_charge_path(booking: @booking)
+    # after saving redirect to charges controller to make the charge. Example of how to link to a route with nested resources:
     # redirect_to parking_space_booking_path(@parking_space, @booking)
   end
 

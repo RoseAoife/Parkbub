@@ -7,22 +7,23 @@ class ParkingSpacesController < ApplicationController
   def index
     @parking_spaces = ParkingSpace.all
   end
-    
+
   def search
-    if params[:search].blank?  
+    if params[:search].blank?
       @search_term = 'N/A'
-      @results = ParkingSpace.all  
-    else  
+      @results = ParkingSpace.all
+    else
       @search_term = params[:search]
-      @parameter = params[:search].downcase  
+      @parameter = params[:search].downcase
       @results = ParkingSpace.all.where("lower(name) LIKE :search OR lower(address) LIKE :search OR lower(description) LIKE :search", search: "%#{@parameter}%")
     end
   end
-    
+
   def bookings
+    # TODO move this to booking_controller#index
     @bookings = Booking.all
   end
-    
+
   # GET /posts/1
   # GET /posts/1.json
   def show
