@@ -19,11 +19,6 @@ class ParkingSpacesController < ApplicationController
     end
   end
 
-  def bookings
-    # TODO move this to booking_controller#index
-    @bookings = Booking.all
-  end
-
   # GET /posts/1
   # GET /posts/1.json
   def show

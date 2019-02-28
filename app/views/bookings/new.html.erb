@@ -20,32 +20,12 @@
       <%= @parking_space.description %>
     </p>
 
-
-    <%# <%= form_for[@parking_space, @booking], parking_space_booking_path(@booking), method: :post do |f| %>
-
     <%= link_to 'Cancel', parking_space_path(@parking_space.id) %>
   </div>
 
-  <div id="second" style="float: left">
-    <h1>Book</h1>
-    <label>Start Time: </label>
-    <input id="time1" type="time" onChange="getPrice(<%= @parking_space.cost %>)"/>
-    <input id="time2" type="date" onChange="getPrice(<%= @parking_space.cost %>)"/>
-    <br><br>
-    <label>End Time: </label>
-    <input id="time3" type="time" onChange="getPrice(<%= @parking_space.cost %>)"/>
-    <input id="time4" type="date" onChange="getPrice(<%= @parking_space.cost %>)"/>
+   <%# <%= form_for[@parking_space, @booking], parking_space_booking_path(@booking), method: :post do |f| %>
 
-    <%= form_tag(new_charge_path, :method => "get") do %>
-      <p><strong>Total Price: </strong><u id="totalPrice">Select a Time</u></p>
-      <%= hidden_field_tag(:hiddenPrice) %>
-      <%= hidden_field_tag(:parking_space_id, value=@parking_space.id) %>
-
-      <div class="input-group">
-        <%= button_tag "Book" %>
-      </div>
-    <% end %>
-  </div>
+   <%= render 'form', booking: @booking %>
 
 <script>
 function defaultValues() {

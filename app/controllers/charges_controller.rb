@@ -4,8 +4,6 @@ class ChargesController < ApplicationController
     end
 
     def new
-        @booking = params[:booking]
-        
         @parking_space_id = params[:parking_space_id]
 
         begin
@@ -15,12 +13,6 @@ class ChargesController < ApplicationController
         rescue
             redirect_back(fallback_location: home_index_path)
         end
-
-        # TODO Move code that creates the booking to booking_controller#create.
-        # Once the booking is created there, redirect here to make the charge
-        @booking = Booking.new(:price => @price, :parking_space_id => @parking_space_id, :user_id => current_user.id, :start_time => '123', :end_time => '312')
-        @booking.save
-
     end
 
     def create

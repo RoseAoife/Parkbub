@@ -1,0 +1,26 @@
+<!-- TODO move this code over to bookings index -->
+
+<h1>Bookings</h1>
+
+<table style="table-layout: fixed; width: 100%;">
+  <thead align="left">
+    <tr>
+      <th>Parking Space</th>
+      <th>User</th>
+      <th>Time</th>
+      <th>Paid</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <% @bookings.each do |result| %>
+  <tbody>
+    <tr>
+      <td><%= link_to result.parking_space_id, parking_space_url(result.parking_space_id) %></td>
+      <td><%= User.where(:id => result.user_id).first.username %></td>
+      <td><%= result.start_time %> - <%= result.end_time %></td>
+      <td>€<%= result.price %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>

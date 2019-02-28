@@ -1,19 +1,13 @@
 class BookingsController < ApplicationController
-
+  before_action :authenticated_user!
   before_action :set_parking_space
-  # TODO  We'll need to authenticate the user for this controller too! (must be logged in)
 
   def index
-    # TODO list the current parking space's bookings here
-    # @bookings = @parking_space.bookings
-  end
-
-  def show
+    @bookings = Booking.where(:parking_space_id => params[:parking_space_id])
   end
 
   # GET /bookings/new
   def new
-    # You can use fancy new associations!
     @booking = @parking_space.bookings.new
   end
 
@@ -22,11 +16,23 @@ class BookingsController < ApplicationController
   end
   # POST /posts
   # POST /posts.json
-  def create
-    # TODO move code that creates the booking here (similar to parking spaces controller)
-    @booking = Booking.new(:price => @price, :parking_space_id => @parking_space_id, :user_id => current_user.id, :start_time => '123', :end_time => '312')
-    @booking = @parking_spaces.bookings.new(booking_params)
-
+  def create  
+    @start_time = DateTime.parse(params["booking"]["start_time(1i)"].to_s + '-' + params["booking"]["start_time(2i)"].to_s + '-' + params["booking"]["start_time(3i)"].to_s + ' ' + params["booking"]["start_time(4i)"].to_s + ':' + params["booking"]["start_time(5i)"].to_s + ':' + '0')
+      
+    @end_time = DateTime.parse(params["booking"]["end_time(1i)"].to_s + '-' + params["booking"]["end_time(2i)"].to_s + '-' + params["booking"]["end_time(3i)"].to_s + ' ' + params["booking"]["end_time(4i)"].to_s + ':' + params["booking"]["end_time(5i)"].to_s + ':' + '0')
+        
+    @booking = Booking.new(:price => 100.00, :parking_space_id => params[:parking_space_id], :user_id => current_user.id, :start_time => @start_time, :end_time => @end_time)
+    @booking = ParkingSpace.find(params[:parking_space_id]).bookings.new(booking_params)
+      
+    puts '!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+    puts @booking.attributes
+    puts current_user.id
+    puts params[:hiddenPrice]
+    #ID: NIL
+    #PRICE: NIL
+    #USER_ID: NIL
+    #CREATED/UPDATED: NIL
+      
     @booking.save
 
     redirect_to new_charge_path(booking: @booking)
@@ -50,6 +56,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:parking_space).permit(:title, :body, :address, :cost)
+      params.require(:booking).permit(:start_time, :end_time, :price, :parking_space_id, :user_id)
     end
 end

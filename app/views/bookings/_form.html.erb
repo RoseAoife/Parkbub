@@ -1,0 +1,33 @@
+<%= form_for [@parking_space, @booking] do %>
+
+  <div id="second" style="float: left">
+    <h1>Book</h1>
+    <!--
+    <label>Start Time: </label>
+    <input id="time1" type="time" onChange="getPrice(<%= @parking_space.cost %>)"/>
+    <input id="time2" type="date" onChange="getPrice(<%= @parking_space.cost %>)"/>
+    <br><br>
+    <label>End Time: </label>
+    <input id="time3" type="time" onChange="getPrice(<%= @parking_space.cost %>)"/>
+    <input id="time4" type="date" onChange="getPrice(<%= @parking_space.cost %>)"/>
+    -->
+      
+    <label>Start Time: </label>
+    <%= time_select :booking, :start_time %>
+    <br><%= date_select :booking, :start_time %>
+      
+    <br><br><label>End Time: </label>
+    <%= time_select :booking, :end_time%>
+    <br><%= date_select :booking, :end_time%>
+      
+      <br><br>
+      <p><strong>Total Price: </strong><u id="totalPrice">Select a Time</u></p>
+      <%= hidden_field_tag(:hiddenPrice) %>
+      <%= hidden_field_tag(:parking_space_id, value=@parking_space.id) %>
+
+      <div class="input-group">
+        <%= submit_tag "Book" %>
+      </div>
+  </div>
+
+<% end %>

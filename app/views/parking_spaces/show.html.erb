@@ -21,13 +21,9 @@
       <%= @parking_space.description %>
     </p>
 
-    <%# Link to a new booking to bring user to the bookings controller
-    We can send the parking space id with it. This way the bookings controller
-    will know what parking space we're talking about  %>
-    <%# <%= link_to 'Create Booking', new_parking_space_booking_path(@post) %>
-
     <% if current_user.id == @parking_space.user_id %>
       <%= link_to 'Edit', edit_parking_space_path(id: @parking_space.id) %> |
+    <%= link_to 'Bookings', parking_space_bookings_path(@parking_space.id) %> | 
     <% end %>
     <%= link_to 'Back', parking_spaces_path %>
   </div>
