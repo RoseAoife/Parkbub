@@ -4,15 +4,9 @@ class ChargesController < ApplicationController
     end
 
     def new
+        puts params
         @parking_space_id = params[:parking_space_id]
-
-        begin
-            if Float(params[:hiddenPrice])
-                @price = params[:hiddenPrice]
-            end
-        rescue
-            redirect_back(fallback_location: home_index_path)
-        end
+        @price = params[:price]
     end
 
     def create

@@ -20,7 +20,12 @@
       <td><%= User.where(:id => result.user_id).first.username %></td>
       <td><%= result.start_time %> - <%= result.end_time %></td>
       <td>€<%= result.price %></td>
+      <% if current_user.id == result.user_id %>
+        <td><%= link_to 'Delete', parking_space_booking_path(:id => result.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
     </tr>
   </tbody>
   <% end %>
 </table>
+
+<%= link_to "Back", parking_space_url(@parking_space_id) %>

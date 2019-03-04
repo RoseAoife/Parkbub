@@ -2,16 +2,7 @@
 
   <div id="second" style="float: left">
     <h1>Book</h1>
-    <!--
-    <label>Start Time: </label>
-    <input id="time1" type="time" onChange="getPrice(<%= @parking_space.cost %>)"/>
-    <input id="time2" type="date" onChange="getPrice(<%= @parking_space.cost %>)"/>
-    <br><br>
-    <label>End Time: </label>
-    <input id="time3" type="time" onChange="getPrice(<%= @parking_space.cost %>)"/>
-    <input id="time4" type="date" onChange="getPrice(<%= @parking_space.cost %>)"/>
-    -->
-      
+
     <label>Start Time: </label>
     <%= time_select :booking, :start_time %>
     <br><%= date_select :booking, :start_time %>
@@ -31,3 +22,64 @@
   </div>
 
 <% end %>
+
+<script>
+function defaultValues() {
+    var d = new Date();
+
+    document.getElementById("booking_start_time_4i").value = d.getHours();
+    document.getElementById("booking_start_time_5i").value = d.getMinutes();
+    document.getElementById("booking_start_time_1i").value = d.getYear();
+    document.getElementById("booking_start_time_2i").value = d.getMonth();
+    document.getElementById("booking_start_time_3i").value = d.getDay();
+    
+    document.getElementById("booking_end_time_4i").value = d.getHours() + 1;
+    document.getElementById("booking_end_time_5i").value = d.getMinutes();
+    document.getElementById("booking_end_time_1i").value = d.getYear();
+    document.getElementById("booking_end_time_2i").value = d.getMonth();
+    document.getElementById("booking_end_time_3i").value = d.getDay();
+    
+    document.getElementById("booking_start_time_4i").setAttribute("onchange", function(){getPrice(<%= @parking_space.cost %>);}())
+    document.getElementById("booking_start_time_5i").setAttribute("onchange", function(){getPrice(<%= @parking_space.cost %>);}())
+    document.getElementById("booking_start_time_1i").setAttribute("onchange", function(){getPrice(<%= @parking_space.cost %>);}())
+    document.getElementById("booking_start_time_2i").setAttribute("onchange", function(){getPrice(<%= @parking_space.cost %>);}())
+    document.getElementById("booking_start_time_3i").setAttribute("onchange", function(){getPrice(<%= @parking_space.cost %>);}())
+    
+    document.getElementById("booking_end_time_4i").setAttribute("onchange", function(){getPrice(<%= @parking_space.cost %>);}())
+    document.getElementById("booking_end_time_5i").setAttribute("onchange", function(){getPrice(<%= @parking_space.cost %>);}())
+    document.getElementById("booking_end_time_1i").setAttribute("onchange", function(){getPrice(<%= @parking_space.cost %>);}())
+    document.getElementById("booking_end_time_2i").setAttribute("onchange", function(){getPrice(<%= @parking_space.cost %>);}())
+    document.getElementById("booking_end_time_3i").setAttribute("onchange", function(){getPrice(<%= @parking_space.cost %>);}())
+}
+
+function getPrice(price) {
+    console.log("getting price");
+    
+    var t1 = new Date(document.getElementById("booking_start_time_2i").value + ' ' + document.getElementById("booking_start_time_3i").value + ", " + document.getElementById("booking_start_time_1i").value + " " + document.getElementById("booking_start_time_4i").value + ":" + document.getElementById("booking_start_time_3i").value + ":00");
+    
+    var t2 = new Date(document.getElementById("booking_end_time_2i").value + ' ' + document.getElementById("booking_end_time_3i").value + ", " + document.getElementById("booking_end_time_1i").value + " " + document.getElementById("booking_end_time_4i").value + ":" + document.getElementById("booking_end_time_3i").value + ":00");
+
+    var millis = t2 - t1
+
+    var minutes = Math.floor((millis / (1000*60)) % 60);
+    var hours   = Math.floor((millis / (1000*60*60)) % 24);
+
+    totalPrice = ((price * hours) + (price * (minutes / 60))).toFixed(2);
+    if (totalPrice == 'NaN' || totalPrice < 0) {
+        totalPrice = "Invalid Times";
+    }
+    else {
+        totalPrice = '€' + totalPrice;
+    }
+
+    document.getElementById("totalPrice").innerHTML = totalPrice;
+    document.getElementById("hiddenPrice").value = totalPrice.substring(1);
+}
+
+
+
+document.addEventListener("turbolinks:load", function() {
+  defaultValues();
+  getPrice(<%= @parking_space.cost %>);
+})
+</script>

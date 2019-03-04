@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
   before_action :set_parking_space
 
   def index
+    @parking_space_id = params[:parking_space_id]
     @bookings = Booking.where(:parking_space_id => params[:parking_space_id])
   end
 
@@ -21,27 +22,22 @@ class BookingsController < ApplicationController
       
     @end_time = DateTime.parse(params["booking"]["end_time(1i)"].to_s + '-' + params["booking"]["end_time(2i)"].to_s + '-' + params["booking"]["end_time(3i)"].to_s + ' ' + params["booking"]["end_time(4i)"].to_s + ':' + params["booking"]["end_time(5i)"].to_s + ':' + '0')
         
-    @booking = Booking.new(:price => 100.00, :parking_space_id => params[:parking_space_id], :user_id => current_user.id, :start_time => @start_time, :end_time => @end_time)
-    @booking = ParkingSpace.find(params[:parking_space_id]).bookings.new(booking_params)
-      
-    puts '!!!!!!!!!!!!!!!!!!!!!!!!!!!'
-    puts @booking.attributes
-    puts current_user.id
-    puts params[:hiddenPrice]
-    #ID: NIL
-    #PRICE: NIL
-    #USER_ID: NIL
-    #CREATED/UPDATED: NIL
+    @booking = Booking.new(:price => params[:hiddenPrice], :parking_space_id => params[:parking_space_id], :user_id => current_user.id, :start_time => @start_time, :end_time => @end_time)
       
     @booking.save
 
-    redirect_to new_charge_path(booking: @booking)
+    redirect_to new_charge_path(booking: @booking, price: params[:hiddenPrice])
     # after saving redirect to charges controller to make the charge. Example of how to link to a route with nested resources:
     # redirect_to parking_space_booking_path(@parking_space, @booking)
   end
 
   def destroy
-
+    @booking = Booking.where(:id => params[:id], :parking_space_id => params[:parking_space_id]).first
+    @booking.delete
+    respond_to do |format|
+      format.html { redirect_to parking_spaces_url, notice: 'Booking was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private

@@ -32,6 +32,7 @@ class ParkingSpacesController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+      @parking_space = ParkingSpace.find(params[:id])
   end
 
   # POST /posts
